@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import datetime
+
+def appendDate(date, name):
+    birthdayDates = open("Events.txt", "a")
+    birthdayDates.write(f"{date}: {name}\n")
+
+year = int(input("Enter a year:\n"))
+month = int(input("Enter a month:\n"))
+day = int(input("Enter a day:\n"))
+date = datetime.date(year, month, day)
+name = str(input("Enter the name of the event: "))
+appendDate(date, name)
+
