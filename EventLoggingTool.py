@@ -7,17 +7,18 @@ def appendDate():
     day = int(input("Enter a day:\n"))
     actualDate = datetime.date(datetime.datetime.now().year, month, day)
     name = str(input("Enter the name of the event: "))
-    eventsList= open("Events.txt", "r+")
+    eventsList= open("Events.txt", "a+")
     eventsList.write(f"{actualDate}: {name}\n")
 
 def sortFile():
     events = []
-    with open("Events.txt", "r+") as eventsList:
+    with open("Events.txt", "r") as eventsList:
         for line in eventsList:
             events.append((datetime.datetime.strptime(line.split(':')[0], '%Y-%m-%d'), line.split(':')[1].strip()))
-        events = BSort.bubble_sort(events)
+    events = BSort.bubble_sort(events)
+    with open("Events.txt", "w") as eventsList:
         for event in events:
-            eventsList.write(f"{event[0].date}: {event[1]}\n")
+            eventsList.write(f"{event[0].date()}: {event[1]}\n")
 
 count = int(input("How many entries?:\n"))
 for i in range(count):
